@@ -1,0 +1,9 @@
+<div class="row-fluid">
+	<div class="span2">
+		<h4><i class="icon-list"></i> My Rooms</h4>
+		<ul id="room-list" class="unstyled">
+			<li data-each-room="rooms.models"><a data-href="room.token | joinPath" data-text="room.name"></a></li>
+		</ul>
+		<a href="/rooms/new" class="btn" title="Create a new room"><i class="icon-plus-sign"></i> New Room</a>
+	</div>
+</div>

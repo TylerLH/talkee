@@ -1,0 +1,10 @@
+== Talkee
+
+Real-time text & video meetings. Built with Backbone.Marionette on top of Rails.
+
+* clone repo
+* bundle install
+* rake db:migrate
+* get opentok api keys and insert your keys into the settings file
+* ???
+* profit

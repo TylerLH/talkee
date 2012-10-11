@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Talkee</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "//static.firebase.com/v0/firebase.js" %>
+  <%= javascript_include_tag "application" %>
+
+  <% # Start the app %>
+  <script type="text/javascript">
+    <% if user_signed_in? %>
+      App.currentUser = new App.Models.User(<%=j current_user.to_json.html_safe %>);
+    <% end %>
+
+    $(document).ready(function(){
+      App.start()
+    });
+  </script>
+
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div id="app">
+	<%= yield %>
+</div>
+
+<% # App Notifications %>
+<script type="text/javascript">
+  <% if alert %>
+	 App.notifier.notify("<%= alert %>");
+  <% end %>
+
+  <% if notice %>
+    App.notifier.notify("<%= notice %>");
+  <% end %>
+</script>
+
+</body>
+</html>
