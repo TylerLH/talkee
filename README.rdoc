@@ -2,9 +2,11 @@
 
 Real-time text & video meetings. Built with Backbone.Marionette on top of Rails.
 
+TODO: finish saving rooms, build room sessions w/ chat & video feeds
+
 * clone repo
 * bundle install
-* rake db:migrate
+* rake db:setup
 * get opentok api keys and insert your keys into the settings file
 * ???
 * profit
