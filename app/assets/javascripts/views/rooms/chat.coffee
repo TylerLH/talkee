@@ -37,3 +37,4 @@ class @App.Views.ChatWindow extends Backbone.Marionette.ItemView
 
 	appendMsg: (data) ->
 		@ui.messageList.append """<li><strong>#{data.sender}</strong>  #{data.message}</li>"""
+		@ui.messageList.animate({scrollTop:@ui.messageList[0].scrollHeight}, 1000);

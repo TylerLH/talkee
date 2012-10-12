@@ -1,7 +1,7 @@
 class @App.Routers.RoomsRouter extends Backbone.Marionette.AppRouter
 	routes:
 		'rooms/new'		:		'new_room'
-		'join/:token'	:		'join_room'
+		'talk/:token'	:	 'join_room'
 
 	new_room: ->
 		if App.currentUser?
@@ -16,4 +16,5 @@ class @App.Routers.RoomsRouter extends Backbone.Marionette.AppRouter
 				App.currentRoom = new App.Models.Room(res)
 				App.layouts.authenticated.content.show(new App.Layouts.ShowRoom(room: App.currentRoom))
 		else
+			Backbone.history.navigate '', true
 			App.notifier.notify 'You must be signed in first'
