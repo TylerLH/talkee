@@ -31,6 +31,7 @@
 
 # Listen for user to be signed in
 @App.vent.bind 'authentication:signed_in', ->
+	App.pusher = new Pusher('29bf925ddf5d74c2f83f')
 	App.rooms = new App.Collections.Rooms
 	App.rooms.fetch()
 	App.main.show(App.layouts.authenticated)

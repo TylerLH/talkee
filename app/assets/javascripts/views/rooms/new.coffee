@@ -19,6 +19,7 @@ class @App.Views.NewRoom extends Backbone.Marionette.ItemView
 		if @model.isValid(true)
 			success = App.rooms.create @model.attributes, {wait: true}
 			if success
-				alert 'saved room'
+				App.notifier.notify 'Room created successfully'
+				Backbone.history.navigate '', true
 			else
-				alert 'there was a prob'
+				App.notifier.notify 'There was a problem creating this room.'

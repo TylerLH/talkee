@@ -9,6 +9,7 @@ gem 'sqlite3'
 gem 'opentok'
 gem 'devise'
 gem 'rails_config'
+gem 'pusher'
 
 
 # Gems used only for assets and not required

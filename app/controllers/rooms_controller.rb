@@ -1,5 +1,6 @@
 class RoomsController < ApplicationController
   before_filter :authenticate_user!
+  respond_to :json, :html
   # GET /rooms
   # GET /rooms.json
   def index
@@ -31,6 +32,35 @@ class RoomsController < ApplicationController
     end
   end
 
+  def get_token
+    api_key = Settings.opentok.api_key
+    api_secret = Settings.opentok.api_secret
+
+    opentok = OpenTok::OpenTokSDK.new api_key, api_secret
+    session = opentok.create_session request.remote_addr
+
+    token = opentok.generate_token :session_id => session, :role => OpenTok::RoleConstants::PUBLISHER, :connection_data => "username=#{current_user.email}"
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: token }
+    end
+  end
+
+  def add_message
+    require 'pusher'
+
+    Pusher.app_id = '11733'
+    Pusher.key = '29bf925ddf5d74c2f83f'
+    Pusher.secret = '0369c29389469fc0540a'
+
+    Pusher["public-chat-#{params[:id]}"].trigger('new_message', 
+      {sender: params[:sender], message: params[:message]}, params[:socket_id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { head :no_content }
+    end
+  end
 
   # GET /rooms/new
   # GET /rooms/new.json
